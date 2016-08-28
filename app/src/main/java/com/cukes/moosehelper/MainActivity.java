@@ -17,6 +17,8 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
+    //There has to be a better way to keep track of these 'X's
+    //Making all these buttons and whatnot doesn't seem right
     public static final String x = "X";
     public static final String xx = "XX";
     public static final String xxx= "XXX";
@@ -74,6 +76,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //again how can i get rid of all these buttons and replace them with an easier
+        //or better solution??
+
+
 
         //setTitle("");
         //android.support.v7.app.ActionBar bar = getSupportActionBar();
@@ -160,6 +167,8 @@ public class MainActivity extends AppCompatActivity {
 
     public int doubleScoreCalc (final int player){
         return_val = 0;
+
+        //return double the number of the score
         final Button _20 = (Button) d_t_score_picker.findViewById(R.id.button_20);
         _20.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -256,6 +265,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public int tripleScoreCalc(final int player){
+        //return triple the number
         final Button _20 = (Button) d_t_score_picker.findViewById(R.id.button_20);
         triple_return_val = 0;
         _20.setOnClickListener(new View.OnClickListener() {
@@ -1646,6 +1656,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void onLongclickNewGame (View view){
+        //doesn't quite work yet
         final Button new_game = (Button) findViewById(R.id.new_game);
         final Context context = getApplicationContext();
         new_game.setOnLongClickListener(new View.OnLongClickListener() {
