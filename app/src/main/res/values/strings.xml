@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Moose Helper</string>
+    <string name="name_guess">Enter Player Name</string>
+    <string name="nums"> 20\n19\n18\n17\n16\n15\n14\n13\n12\n11\n10\n B \n D \n T \n</string>
+    <string name="Test"> </string>
+    <string name="test">XXX</string>
+</resources>
