@@ -29,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Scott"
+        android:text="               "
         android:clickable="true"
         android:onClick="master_switch"
         android:textSize="25sp"
@@ -42,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Jordan"
+        android:text="                "
         android:clickable="true"
         android:onClick="master_switch"
         android:textSize="25sp"
@@ -244,7 +244,7 @@
         android:text="@string/Test"
         android:id="@+id/player1_B"
         android:layout_below="@+id/player1_10"
-        android:layout_alignStart="@+id/player1_10" />
+        android:layout_toStartOf="@id/score_list" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -554,18 +554,13 @@
         android:layout_alignParentBottom="true"/>
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Button"
+        android:layout_width="59dp"
+        android:layout_height="59dp"
         android:id="@+id/new_game"
         android:clickable="true"
         android:onClick="onLongclickNewGame"
         android:longClickable="true"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:layout_centerInParent="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/score_list"
-        android:layout_alignBottom="@+id/textView13" />
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

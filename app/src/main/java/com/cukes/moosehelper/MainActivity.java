@@ -6,9 +6,13 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -25,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
     public static int return_val = 0;
     public static int triple_return_val = 0;
 
+
+
     public static boolean ADD = true;
 
     TextView player1;
@@ -40,38 +46,40 @@ public class MainActivity extends AppCompatActivity {
     public Integer player2_numeric_val = 0;
     Dialog d_t_score_picker;
 
-    TextView player1_score_20;
-    TextView player1_score_19;
-    TextView player1_score_18;
-    TextView player1_score_17;
-    TextView player1_score_16;
-    TextView player1_score_15;
-    TextView player1_score_14;
-    TextView player1_score_13;
-    TextView player1_score_12;
-    TextView player1_score_11;
-    TextView player1_score_10;
-    TextView player1_score_B;
-    TextView player1_score_D;
-    TextView player1_score_T;
 
-    TextView player2_score_20;
-    TextView player2_score_19;
-    TextView player2_score_18;
-    TextView player2_score_17;
-    TextView player2_score_16;
-    TextView player2_score_15;
-    TextView player2_score_14;
-    TextView player2_score_13;
-    TextView player2_score_12;
-    TextView player2_score_11;
-    TextView player2_score_10;
-    TextView player2_score_B;
-    TextView player2_score_D;
-    TextView player2_score_T;
+
+    scoreBox player1_score_20;
+    scoreBox player1_score_19;
+    scoreBox player1_score_18;
+    scoreBox player1_score_17;
+    scoreBox player1_score_16;
+    scoreBox player1_score_15;
+    scoreBox player1_score_14;
+    scoreBox player1_score_13;
+    scoreBox player1_score_12;
+    scoreBox player1_score_11;
+    scoreBox player1_score_10;
+    scoreBox player1_score_B;
+    scoreBox player1_score_D;
+    scoreBox player1_score_T;
+
+    scoreBox player2_score_20;
+    scoreBox player2_score_19;
+    scoreBox player2_score_18;
+    scoreBox player2_score_17;
+    scoreBox player2_score_16;
+    scoreBox player2_score_15;
+    scoreBox player2_score_14;
+    scoreBox player2_score_13;
+    scoreBox player2_score_12;
+    scoreBox player2_score_11;
+    scoreBox player2_score_10;
+    scoreBox player2_score_B;
+    scoreBox player2_score_D;
+    scoreBox player2_score_T;
 
     RadioButton Add_button;
-
+    Button new_game;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,7 +88,39 @@ public class MainActivity extends AppCompatActivity {
         //again how can i get rid of all these buttons and replace them with an easier
         //or better solution??
 
+        new_game = (Button) findViewById(R.id.new_game);
+        new_game.setVisibility(View.VISIBLE);
+        new_game.setBackgroundColor(Color.TRANSPARENT);
 
+         player1_score_20 = new scoreBox();
+         player1_score_19 = new scoreBox();
+         player1_score_18 = new scoreBox();
+         player1_score_17 = new scoreBox();
+         player1_score_16 = new scoreBox();
+         player1_score_15 = new scoreBox();
+         player1_score_14 = new scoreBox();
+         player1_score_13 = new scoreBox();
+         player1_score_12 = new scoreBox();
+         player1_score_11 = new scoreBox();
+         player1_score_10 = new scoreBox();
+         player1_score_B = new scoreBox();
+         player1_score_D = new scoreBox();
+         player1_score_T = new scoreBox();
+
+         player2_score_20 = new scoreBox();
+         player2_score_19 = new scoreBox();
+         player2_score_18 = new scoreBox();
+         player2_score_17 = new scoreBox();
+         player2_score_16 = new scoreBox();
+         player2_score_15 = new scoreBox();
+         player2_score_14 = new scoreBox();
+         player2_score_13 = new scoreBox();
+         player2_score_12 = new scoreBox();
+         player2_score_11 = new scoreBox();
+         player2_score_10 = new scoreBox();
+         player2_score_B = new scoreBox();
+         player2_score_D = new scoreBox();
+         player2_score_T = new scoreBox();
 
         //setTitle("");
         //android.support.v7.app.ActionBar bar = getSupportActionBar();
@@ -96,39 +136,39 @@ public class MainActivity extends AppCompatActivity {
         player1 = (TextView) findViewById(R.id.player1_name);
         player1_score = (TextView) findViewById(R.id.player1_score);
         player1_score.setText("0");
-        player1_score_20 = (TextView) findViewById(R.id.player1_20);
-        player1_score_19 = (TextView) findViewById(R.id.player1_19);
-        player1_score_18 = (TextView) findViewById(R.id.player1_18);
-        player1_score_17 = (TextView) findViewById(R.id.player1_17);
-        player1_score_16 = (TextView) findViewById(R.id.player1_16);
-        player1_score_15 = (TextView) findViewById(R.id.player1_15);
-        player1_score_14 = (TextView) findViewById(R.id.player1_14);
-        player1_score_13 = (TextView) findViewById(R.id.player1_13);
-        player1_score_12 = (TextView) findViewById(R.id.player1_12);
-        player1_score_11 = (TextView) findViewById(R.id.player1_11);
-        player1_score_10 = (TextView) findViewById(R.id.player1_10);
-        player1_score_B = (TextView) findViewById(R.id.player1_B);
-        player1_score_D = (TextView) findViewById(R.id.player1_D);
-        player1_score_T = (TextView) findViewById(R.id.player1_T);
+        player1_score_20.setScoreBox( (TextView) findViewById(R.id.player1_20));
+        player1_score_19.setScoreBox( (TextView) findViewById(R.id.player1_19));
+        player1_score_18.setScoreBox( (TextView) findViewById(R.id.player1_18));
+        player1_score_17.setScoreBox( (TextView) findViewById(R.id.player1_17));
+        player1_score_16.setScoreBox( (TextView) findViewById(R.id.player1_16));
+        player1_score_15.setScoreBox( (TextView) findViewById(R.id.player1_15));
+        player1_score_14.setScoreBox( (TextView) findViewById(R.id.player1_14));
+        player1_score_13.setScoreBox( (TextView) findViewById(R.id.player1_13));
+        player1_score_12.setScoreBox( (TextView) findViewById(R.id.player1_12));
+        player1_score_11.setScoreBox( (TextView) findViewById(R.id.player1_11));
+        player1_score_10.setScoreBox( (TextView) findViewById(R.id.player1_10));
+        player1_score_B.setScoreBox((TextView)findViewById(R.id.player1_B));
+        player1_score_D.setScoreBox((TextView)findViewById(R.id.player1_D));
+        player1_score_T.setScoreBox((TextView) findViewById(R.id.player1_T));
 
 
         player2 = (TextView) findViewById(R.id.player2_name);
         player2_score = (TextView) findViewById(R.id.player2_score);
         player2_score.setText("0");
-        player2_score_20 = (TextView) findViewById(R.id.player2_20);
-        player2_score_19 = (TextView) findViewById(R.id.player2_19);
-        player2_score_18 = (TextView) findViewById(R.id.player2_18);
-        player2_score_17 = (TextView) findViewById(R.id.player2_17);
-        player2_score_16 = (TextView) findViewById(R.id.player2_16);
-        player2_score_15 = (TextView) findViewById(R.id.player2_15);
-        player2_score_14 = (TextView) findViewById(R.id.player2_14);
-        player2_score_13 = (TextView) findViewById(R.id.player2_13);
-        player2_score_12 = (TextView) findViewById(R.id.player2_12);
-        player2_score_11 = (TextView) findViewById(R.id.player2_11);
-        player2_score_10 = (TextView) findViewById(R.id.player2_10);
-        player2_score_B = (TextView) findViewById(R.id.player2_B);
-        player2_score_D = (TextView) findViewById(R.id.player2_D);
-        player2_score_T = (TextView) findViewById(R.id.player2_T);
+        player2_score_20.setScoreBox( (TextView) findViewById(R.id.player2_20));
+        player2_score_19.setScoreBox( (TextView) findViewById(R.id.player2_19));
+        player2_score_18.setScoreBox( (TextView) findViewById(R.id.player2_18));
+        player2_score_17.setScoreBox( (TextView) findViewById(R.id.player2_17));
+        player2_score_16.setScoreBox( (TextView) findViewById(R.id.player2_16));
+        player2_score_15.setScoreBox( (TextView) findViewById(R.id.player2_15));
+        player2_score_14.setScoreBox( (TextView) findViewById(R.id.player2_14));
+        player2_score_13.setScoreBox( (TextView) findViewById(R.id.player2_13));
+        player2_score_12.setScoreBox( (TextView) findViewById(R.id.player2_12));
+        player2_score_11.setScoreBox( (TextView) findViewById(R.id.player2_11));
+        player2_score_10.setScoreBox( (TextView) findViewById(R.id.player2_10));
+        player2_score_B.setScoreBox((TextView) findViewById(R.id.player2_B));
+        player2_score_D.setScoreBox((TextView) findViewById(R.id.player2_D));
+        player2_score_T.setScoreBox((TextView) findViewById(R.id.player2_T));
 
         showDialogInput();
 
@@ -423,6 +463,8 @@ public class MainActivity extends AppCompatActivity {
         done = (Button) findViewById(R.id.done);
         score_dialog.setContentView(R.layout.dialog_score_picker);
         score_dialog.getWindow().setLayout(ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
+        WindowManager.LayoutParams layoutparams = score_dialog.getWindow().getAttributes();
+        layoutparams.gravity = Gravity.CENTER | Gravity.START;
         String name = ((TextView) view).getText().toString();
         ADD = true;
 
@@ -435,40 +477,42 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if(ADD){
-                        String temp = player1_score_20.getText().toString();
+                        String temp = player1_score_20.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 0:
-                                player1_score_20.setText(x);
+                                player1_score_20.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player1_score_20.setText(xx);
+                                player1_score_20.getScore_number().setText(xx);
                                 break;
 
                             case 2:
-                                player1_score_20.setText(xxx);
+                                player1_score_20.getScore_number().setText(xxx);
+                                player1_score_20.setClosed(true);
                                 break;
 
                             case 3:
-                                if(!isClosed(player2_score_20)){
+                                if(!player2_score_20.isClosed()){
                                     updateScore(20, 1);
                                 }
                                 break;
                         }
                     }
                     else{
-                        String temp = player1_score_20.getText().toString();
+                        String temp = player1_score_20.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 3:
-                                player1_score_20.setText(xx);
+                                player1_score_20.getScore_number().setText(xx);
+                                player1_score_20.setClosed(false);
                                 break;
 
                             case 2:
-                                player1_score_20.setText(xx);
+                                player1_score_20.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player1_score_20.setText("");
+                                player1_score_20.getScore_number().setText("");
                                 break;
                         }
                     }
@@ -479,39 +523,41 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if(ADD){
-                        String temp = player1_score_19.getText().toString();
+                        String temp = player1_score_19.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 0:
-                                player1_score_19.setText(x);
+                                player1_score_19.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player1_score_19.setText(xx);
+                                player1_score_19.getScore_number().setText(xx);
                                 break;
 
                             case 2:
-                                player1_score_19.setText(xxx);
+                                player1_score_19.getScore_number().setText(xxx);
+                                player1_score_19.setClosed(true);
                                 break;
 
                             case 3:
-                                if(!isClosed(player2_score_19)) updateScore(19, 1);
+                                if(!player2_score_19.isClosed()) updateScore(19, 1);
                                 break;
                         }
 
                     }
                     else{
-                        String temp = player1_score_19.getText().toString();
+                        String temp = player1_score_19.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 3:
-                                player1_score_19.setText(xx);
+                                player1_score_19.getScore_number().setText(xx);
+                                player1_score_19.setClosed(false);
                                 break;
 
                             case 2:
-                                player1_score_19.setText(xx);
+                                player1_score_19.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player1_score_19.setText("");
+                                player1_score_19.getScore_number().setText("");
                                 break;
                         }
 
@@ -523,39 +569,41 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if(ADD){
-                        String temp = player1_score_18.getText().toString();
+                        String temp = player1_score_18.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 0:
-                                player1_score_18.setText(x);
+                                player1_score_18.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player1_score_18.setText(xx);
+                                player1_score_18.getScore_number().setText(xx);
                                 break;
 
                             case 2:
-                                player1_score_18.setText(xxx);
+                                player1_score_18.getScore_number().setText(xxx);
+                                player1_score_18.setClosed(true);
                                 break;
 
                             case 3:
-                                if(!isClosed(player2_score_18)) updateScore(18, 1);
+                                if(!player2_score_18.isClosed()) updateScore(18, 1);
                                 break;
                         }
 
                     }
                     else{
-                        String temp = player1_score_18.getText().toString();
+                        String temp = player1_score_18.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 3:
-                                player1_score_18.setText(xx);
+                                player1_score_18.getScore_number().setText(xx);
+                                player1_score_18.setClosed(false);
                                 break;
 
                             case 2:
-                                player1_score_18.setText(xx);
+                                player1_score_18.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player1_score_18.setText("");
+                                player1_score_18.getScore_number().setText("");
                                 break;
                         }
                     }
@@ -566,38 +614,40 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if(ADD){
-                        String temp = player1_score_17.getText().toString();
+                        String temp = player1_score_17.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 0:
-                                player1_score_17.setText(x);
+                                player1_score_17.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player1_score_17.setText(xx);
+                                player1_score_17.getScore_number().setText(xx);
                                 break;
 
                             case 2:
-                                player1_score_17.setText(xxx);
+                                player1_score_17.getScore_number().setText(xxx);
+                                player1_score_17.setClosed(true);
                                 break;
 
                             case 3:
-                                if(!isClosed(player2_score_17)) updateScore(17, 1);
+                                if(!player2_score_17.isClosed()) updateScore(17, 1);
                                 break;
                         }
                     }
                     else{
-                        String temp = player1_score_17.getText().toString();
+                        String temp = player1_score_17.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 3:
-                                player1_score_17.setText(xx);
+                                player1_score_17.getScore_number().setText(xx);
                                 break;
 
                             case 2:
-                                player1_score_17.setText(x);
+                                player1_score_17.getScore_number().setText(x);
+                                player1_score_17.setClosed(false);
                                 break;
 
                             case 1:
-                                player1_score_17.setText("");
+                                player1_score_17.getScore_number().setText("");
                                 break;
                         }
                     }
@@ -608,38 +658,40 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if(ADD){
-                        String temp = player1_score_16.getText().toString();
+                        String temp = player1_score_16.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 0:
-                                player1_score_16.setText(x);
+                                player1_score_16.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player1_score_16.setText(xx);
+                                player1_score_16.getScore_number().setText(xx);
                                 break;
 
                             case 2:
-                                player1_score_16.setText(xxx);
+                                player1_score_16.getScore_number().setText(xxx);
+                                player1_score_16.setClosed(true);
                                 break;
 
                             case 3:
-                                if(!isClosed(player2_score_16)) updateScore(16, 1);
+                                if(!player2_score_16.isClosed()) updateScore(16, 1);
                                 break;
                         }
                     }
                     else{
-                        String temp = player1_score_16.getText().toString();
+                        String temp = player1_score_16.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 3:
-                                player1_score_16.setText(xx);
+                                player1_score_16.getScore_number().setText(xx);
+                                player1_score_16.setClosed(false);
                                 break;
 
                             case 2:
-                                player1_score_16.setText(xx);
+                                player1_score_16.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player1_score_16.setText("");
+                                player1_score_16.getScore_number().setText("");
                                 break;
                         }
                     }
@@ -650,38 +702,40 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if(ADD){
-                        String temp = player1_score_15.getText().toString();
+                        String temp = player1_score_15.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 0:
-                                player1_score_15.setText(x);
+                                player1_score_15.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player1_score_15.setText(xx);
+                                player1_score_15.getScore_number().setText(xx);
                                 break;
 
                             case 2:
-                                player1_score_15.setText(xxx);
+                                player1_score_15.getScore_number().setText(xxx);
+                                player1_score_15.setClosed(true);
                                 break;
 
                             case 3:
-                                if(!isClosed(player2_score_15)) updateScore(15, 1);
+                                if(!player2_score_15.isClosed()) updateScore(15, 1);
                                 break;
                         }
                     }
                     else{
-                        String temp = player1_score_15.getText().toString();
+                        String temp = player1_score_15.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 3:
-                                player1_score_15.setText(xx);
+                                player1_score_15.getScore_number().setText(xx);
+                                player1_score_15.setClosed(false);
                                 break;
 
                             case 2:
-                                player1_score_15.setText(xx);
+                                player1_score_15.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player1_score_15.setText("");
+                                player1_score_15.getScore_number().setText("");
                                 break;
                         }
                     }
@@ -692,38 +746,40 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if(ADD){
-                        String temp = player1_score_14.getText().toString();
+                        String temp = player1_score_14.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 0:
-                                player1_score_14.setText(x);
+                                player1_score_14.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player1_score_14.setText(xx);
+                                player1_score_14.getScore_number().setText(xx);
                                 break;
 
                             case 2:
-                                player1_score_14.setText(xxx);
+                                player1_score_14.getScore_number().setText(xxx);
+                                player1_score_14.setClosed(true);
                                 break;
 
                             case 3:
-                                if(!isClosed(player2_score_14)) updateScore(14, 1);
+                                if(!player2_score_14.isClosed()) updateScore(14, 1);
                                 break;
                         }
                     }
                     else{
-                        String temp = player1_score_14.getText().toString();
+                        String temp = player1_score_14.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 3:
-                                player1_score_14.setText(xx);
+                                player1_score_14.getScore_number().setText(xx);
+                                player1_score_14.setClosed(false);
                                 break;
 
                             case 2:
-                                player1_score_14.setText(xx);
+                                player1_score_14.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player1_score_14.setText("");
+                                player1_score_14.getScore_number().setText("");
                                 break;
                         }
                     }
@@ -734,38 +790,40 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if(ADD){
-                        String temp = player1_score_13.getText().toString();
+                        String temp = player1_score_13.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 0:
-                                player1_score_13.setText(x);
+                                player1_score_13.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player1_score_13.setText(xx);
+                                player1_score_13.getScore_number().setText(xx);
                                 break;
 
                             case 2:
-                                player1_score_13.setText(xxx);
+                                player1_score_13.getScore_number().setText(xxx);
+                                player1_score_13.setClosed(true);
                                 break;
 
                             case 3:
-                                if(!isClosed(player2_score_13)) updateScore(13, 1);
+                                if(!player2_score_13.isClosed()) updateScore(13, 1);
                                 break;
                         }
                     }
                     else{
-                        String temp = player1_score_13.getText().toString();
+                        String temp = player1_score_13.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 3:
-                                player1_score_13.setText(xx);
+                                player1_score_13.getScore_number().setText(xx);
+                                player1_score_13.setClosed(false);
                                 break;
 
                             case 2:
-                                player1_score_13.setText(xx);
+                                player1_score_13.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player1_score_13.setText("");
+                                player1_score_13.getScore_number().setText("");
                                 break;
                         }
                     }
@@ -776,38 +834,40 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if(ADD){
-                        String temp = player1_score_12.getText().toString();
+                        String temp = player1_score_12.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 0:
-                                player1_score_12.setText(x);
+                                player1_score_12.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player1_score_12.setText(xx);
+                                player1_score_12.getScore_number().setText(xx);
                                 break;
 
                             case 2:
-                                player1_score_12.setText(xxx);
+                                player1_score_12.getScore_number().setText(xxx);
+                                player1_score_12.setClosed(true);
                                 break;
 
                             case 3:
-                                if(!isClosed(player2_score_12))updateScore(12, 1);
+                                if(!player2_score_12.isClosed())updateScore(12, 1);
                                 break;
                         }
                     }
                     else{
-                        String temp = player1_score_12.getText().toString();
+                        String temp = player1_score_12.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 3:
-                                player1_score_12.setText(xx);
+                                player1_score_12.getScore_number().setText(xx);
+                                player1_score_12.setClosed(false);
                                 break;
 
                             case 2:
-                                player1_score_12.setText(xx);
+                                player1_score_12.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player1_score_12.setText("");
+                                player1_score_12.getScore_number().setText("");
                                 break;
 
 
@@ -820,38 +880,40 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if(ADD){
-                        String temp = player1_score_11.getText().toString();
+                        String temp = player1_score_11.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 0:
-                                player1_score_11.setText(x);
+                                player1_score_11.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player1_score_11.setText(xx);
+                                player1_score_11.getScore_number().setText(xx);
                                 break;
 
                             case 2:
-                                player1_score_11.setText(xxx);
+                                player1_score_11.getScore_number().setText(xxx);
+                                player1_score_11.setClosed(true);
                                 break;
 
                             case 3:
-                                if(!isClosed(player2_score_11)) updateScore(11, 1);
+                                if(!player2_score_11.isClosed()) updateScore(11, 1);
                                 break;
                         }
                     }
                     else{
-                        String temp = player1_score_11.getText().toString();
+                        String temp = player1_score_11.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 3:
-                                player1_score_11.setText(xx);
+                                player1_score_11.getScore_number().setText(xx);
+                                player1_score_11.setClosed(false);
                                 break;
 
                             case 2:
-                                player1_score_11.setText(xx);
+                                player1_score_11.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player1_score_11.setText("");
+                                player1_score_11.getScore_number().setText("");
                                 break;
                         }
                     }
@@ -862,38 +924,40 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if(ADD){
-                        String temp = player1_score_10.getText().toString();
+                        String temp = player1_score_10.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 0:
-                                player1_score_10.setText(x);
+                                player1_score_10.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player1_score_10.setText(xx);
+                                player1_score_10.getScore_number().setText(xx);
                                 break;
 
                             case 2:
-                                player1_score_10.setText(xxx);
+                                player1_score_10.getScore_number().setText(xxx);
+                                player1_score_10.setClosed(true);
                                 break;
 
                             case 3:
-                                if(!isClosed(player2_score_10)) updateScore(10, 1);
+                                if(!player2_score_10.isClosed()) updateScore(10, 1);
                                 break;
                         }
                     }
                     else{
-                        String temp = player1_score_10.getText().toString();
+                        String temp = player1_score_10.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 3:
-                                player1_score_10.setText(xx);
+                                player1_score_10.getScore_number().setText(xx);
+                                player1_score_10.setClosed(false);
                                 break;
 
                             case 2:
-                                player1_score_10.setText(xx);
+                                player1_score_10.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player1_score_10.setText("");
+                                player1_score_10.getScore_number().setText("");
                                 break;
                         }
                     }
@@ -904,36 +968,42 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if(ADD){
-                        String temp = player1_score_B.getText().toString();
+                        String temp = player1_score_B.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 0:
-                                player1_score_B.setText(x);
+                                player1_score_B.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player1_score_B.setText(xx);
+                                player1_score_B.getScore_number().setText(xx);
                                 break;
 
                             case 2:
-                                player1_score_B.setText(xxx);
+                                player1_score_B.getScore_number().setText(xxx);
+                                player1_score_B.setClosed(true);
+                                break;
+
+                            case 3:
+                                if (!player2_score_B.isClosed()) updateScore(25, 1);
                                 break;
 
 
                         }
                     }
                     else{
-                        String temp = player1_score_B.getText().toString();
+                        String temp = player1_score_B.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 3:
-                                player1_score_B.setText(xx);
+                                player1_score_B.getScore_number().setText(xx);
+                                player1_score_B.setClosed(false);
                                 break;
 
                             case 2:
-                                player1_score_B.setText(xx);
+                                player1_score_B.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player1_score_B.setText("");
+                                player1_score_B.getScore_number().setText("");
                                 break;
                         }
                     }
@@ -944,41 +1014,43 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if(ADD){
-                        String temp = player1_score_D.getText().toString();
+                        String temp = player1_score_D.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 0:
-                                player1_score_D.setText(x);
+                                player1_score_D.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player1_score_D.setText(xx);
+                                player1_score_D.getScore_number().setText(xx);
                                 break;
 
                             case 2:
-                                player1_score_D.setText(xxx);
+                                player1_score_D.getScore_number().setText(xxx);
+                                player1_score_D.setClosed(true);
                                 break;
 
                             case 3:
-                                if(!isClosed(player2_score_D)) player1_numeric_val += doubleScoreCalc(1);
+                                if(!player2_score_D.isClosed()) player1_numeric_val += doubleScoreCalc(1);
                                 break;
                         }
-                        String set_score = player1_numeric_val.toString();
-                        player1_score.setText(set_score);
-
+                        //String set_score = player1_numeric_val.toString();
+                        //player1_score.getScore_number().setText(set_score);
+//BREAK
                     }
                     else{
-                        String temp = player1_score_D.getText().toString();
+                        String temp = player1_score_D.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 3:
-                                player1_score_D.setText(xx);
+                                player1_score_D.getScore_number().setText(xx);
+                                player1_score_D.setClosed(false);
                                 break;
 
                             case 2:
-                                player1_score_D.setText(xx);
+                                player1_score_D.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player1_score_D.setText("");
+                                player1_score_D.getScore_number().setText("");
                                 break;
                         }
                     }
@@ -989,38 +1061,40 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if(ADD){
-                        String temp = player1_score_T.getText().toString();
+                        String temp = player1_score_T.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 0:
-                                player1_score_T.setText(x);
+                                player1_score_T.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player1_score_T.setText(xx);
+                                player1_score_T.getScore_number().setText(xx);
                                 break;
 
                             case 2:
-                                player1_score_T.setText(xxx);
+                                player1_score_T.getScore_number().setText(xxx);
+                                player1_score_T.setClosed(true);
                                 break;
 
                             case 3:
-                                if (!isClosed(player2_score_T)) player1_numeric_val += tripleScoreCalc(1);
+                                if (!player2_score_T.isClosed()) player1_numeric_val += tripleScoreCalc(1);
                                 break;
                         }
                     }
                     else{
-                        String temp = player1_score_T.getText().toString();
+                        String temp = player1_score_T.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 3:
-                                player1_score_T.setText(xx);
+                                player1_score_T.getScore_number().setText(xx);
+                                player1_score_T.setClosed(false);
                                 break;
 
                             case 2:
-                                player1_score_T.setText(xx);
+                                player1_score_T.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player1_score_T.setText("");
+                                player1_score_T.getScore_number().setText("");
                                 break;
                         }
                     }
@@ -1032,7 +1106,38 @@ public class MainActivity extends AppCompatActivity {
             done.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    score_dialog.dismiss();
+                    if(isGameWon() == 0){score_dialog.dismiss();}
+                    else if(isGameWon() == 1){
+                        new AlertDialog.Builder(MainActivity.this)
+                                .setTitle("Congratulations!!")
+                                .setMessage(player1.getText().toString() + " won!\nPlay again?")
+                                .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int whichButton) {
+                                        Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        startActivity(intent);
+                                    }})
+                                .setNegativeButton("No" ,new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int whichButton) {
+                                        MainActivity.this.finishAffinity();
+                                    }}).show();
+                    }
+
+                    else if(isGameWon() == 2){
+                        new AlertDialog.Builder(MainActivity.this)
+                                .setTitle("Congratulations!!")
+                                .setMessage(player2.getText().toString() + " won!\nPlay again?")
+                                .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int whichButton) {
+                                        Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        startActivity(intent);
+                                    }})
+                                .setNegativeButton("No" ,new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int whichButton) {
+                                        MainActivity.this.finishAffinity();
+                                    }}).show();
+                    }
                 }
 
             });
@@ -1046,38 +1151,40 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if (ADD) {
-                        String temp = player2_score_20.getText().toString();
+                        String temp = player2_score_20.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 0:
-                                player2_score_20.setText(x);
+                                player2_score_20.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player2_score_20.setText(xx);
+                                player2_score_20.getScore_number().setText(xx);
                                 break;
 
                             case 2:
-                                player2_score_20.setText(xxx);
+                                player2_score_20.getScore_number().setText(xxx);
+                                player2_score_20.setClosed(true);
                                 break;
 
                             case 3:
-                                if (!isClosed(player1_score_20)) updateScore(20, 2);
+                                if (!player1_score_20.isClosed()) updateScore(20, 2);
                                 break;
 
                         }
                     } else {
-                        String temp = player2_score_20.getText().toString();
+                        String temp = player2_score_20.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 3:
-                                player2_score_20.setText(xx);
+                                player2_score_20.getScore_number().setText(xx);
+                                player2_score_20.setClosed(false);
                                 break;
 
                             case 2:
-                                player2_score_20.setText(xx);
+                                player2_score_20.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player2_score_20.setText("");
+                                player2_score_20.getScore_number().setText("");
                                 break;
                         }
                     }
@@ -1088,37 +1195,39 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if (ADD) {
-                        String temp = player2_score_19.getText().toString();
+                        String temp = player2_score_19.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 0:
-                                player2_score_19.setText(x);
+                                player2_score_19.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player2_score_19.setText(xx);
+                                player2_score_19.getScore_number().setText(xx);
                                 break;
 
                             case 2:
-                                player2_score_19.setText(xxx);
+                                player2_score_19.getScore_number().setText(xxx);
+                                player2_score_19.setClosed(true);
                                 break;
 
                             case 3:
-                                if (!isClosed(player1_score_19)) updateScore(19, 2);
+                                if (!player1_score_19.isClosed()) updateScore(19, 2);
                                 break;
                         }
                     } else {
-                        String temp = player2_score_19.getText().toString();
+                        String temp = player2_score_19.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 3:
-                                player2_score_19.setText(xx);
+                                player2_score_19.getScore_number().setText(xx);
+                                player2_score_19.setClosed(false);
                                 break;
 
                             case 2:
-                                player2_score_19.setText(xx);
+                                player2_score_19.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player2_score_19.setText("");
+                                player2_score_19.getScore_number().setText("");
                                 break;
                         }
                     }
@@ -1129,37 +1238,39 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if (ADD) {
-                        String temp = player2_score_18.getText().toString();
+                        String temp = player2_score_18.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 0:
-                                player2_score_18.setText(x);
+                                player2_score_18.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player2_score_18.setText(xx);
+                                player2_score_18.getScore_number().setText(xx);
                                 break;
 
                             case 2:
-                                player2_score_18.setText(xxx);
+                                player2_score_18.getScore_number().setText(xxx);
+                                player2_score_18.setClosed(true);
                                 break;
 
                             case 3:
-                                if (!isClosed(player1_score_18)) updateScore(18, 2);
+                                if (!player1_score_18.isClosed()) updateScore(18, 2);
                                 break;
                         }
                     } else {
-                        String temp = player2_score_18.getText().toString();
+                        String temp = player2_score_18.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 3:
-                                player2_score_18.setText(xx);
+                                player2_score_18.getScore_number().setText(xx);
+                                player2_score_18.setClosed(false);
                                 break;
 
                             case 2:
-                                player2_score_18.setText(xx);
+                                player2_score_18.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player2_score_18.setText("");
+                                player2_score_18.getScore_number().setText("");
                                 break;
                         }
 
@@ -1171,38 +1282,40 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if (ADD) {
-                        String temp = player2_score_17.getText().toString();
+                        String temp = player2_score_17.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 0:
-                                player2_score_17.setText(x);
+                                player2_score_17.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player2_score_17.setText(xx);
+                                player2_score_17.getScore_number().setText(xx);
                                 break;
 
                             case 2:
-                                player2_score_17.setText(xxx);
+                                player2_score_17.getScore_number().setText(xxx);
+                                player2_score_17.setClosed(true);
                                 break;
 
                             case 3:
-                                if (!isClosed(player1_score_17)) updateScore(17, 2);
+                                if (!player1_score_17.isClosed()) updateScore(17, 2);
                                 break;
                         }
 
                     } else {
-                        String temp = player2_score_17.getText().toString();
+                        String temp = player2_score_17.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 3:
-                                player2_score_17.setText(xx);
+                                player2_score_17.getScore_number().setText(xx);
+                                player2_score_17.setClosed(false);
                                 break;
 
                             case 2:
-                                player2_score_17.setText(xx);
+                                player2_score_17.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player2_score_17.setText("");
+                                player2_score_17.getScore_number().setText("");
                                 break;
                         }
 
@@ -1214,38 +1327,40 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if (ADD) {
-                        String temp = player2_score_16.getText().toString();
+                        String temp = player2_score_16.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 0:
-                                player2_score_16.setText(x);
+                                player2_score_16.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player2_score_16.setText(xx);
+                                player2_score_16.getScore_number().setText(xx);
                                 break;
 
                             case 2:
-                                player2_score_16.setText(xxx);
+                                player2_score_16.getScore_number().setText(xxx);
+                                player2_score_16.setClosed(true);
                                 break;
 
                             case 3:
-                                if (!isClosed(player1_score_16)) updateScore(16, 2);
+                                if (!player1_score_16.isClosed()) updateScore(16, 2);
                                 break;
                         }
 
                     } else {
-                        String temp = player2_score_16.getText().toString();
+                        String temp = player2_score_16.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 3:
-                                player2_score_16.setText(xx);
+                                player2_score_16.getScore_number().setText(xx);
+                                player2_score_16.setClosed(false);
                                 break;
 
                             case 2:
-                                player2_score_16.setText(xx);
+                                player2_score_16.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player2_score_16.setText("");
+                                player2_score_16.getScore_number().setText("");
                                 break;
                         }
 
@@ -1257,38 +1372,40 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if (ADD) {
-                        String temp = player2_score_15.getText().toString();
+                        String temp = player2_score_15.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 0:
-                                player2_score_15.setText(x);
+                                player2_score_15.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player2_score_15.setText(xx);
+                                player2_score_15.getScore_number().setText(xx);
                                 break;
 
                             case 2:
-                                player2_score_15.setText(xxx);
+                                player2_score_15.getScore_number().setText(xxx);
+                                player2_score_15.setClosed(true);
                                 break;
 
                             case 3:
-                                if (!isClosed(player1_score_15)) updateScore(15, 2);
+                                if (!player1_score_15.isClosed()) updateScore(15, 2);
                                 break;
                         }
 
                     } else {
-                        String temp = player2_score_15.getText().toString();
+                        String temp = player2_score_15.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 3:
-                                player2_score_15.setText(xx);
+                                player2_score_15.getScore_number().setText(xx);
+                                player2_score_15.setClosed(false);
                                 break;
 
                             case 2:
-                                player2_score_15.setText(xx);
+                                player2_score_15.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player2_score_15.setText("");
+                                player2_score_15.getScore_number().setText("");
                                 break;
                         }
 
@@ -1300,38 +1417,40 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if (ADD) {
-                        String temp = player2_score_14.getText().toString();
+                        String temp = player2_score_14.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 0:
-                                player2_score_14.setText(x);
+                                player2_score_14.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player2_score_14.setText(xx);
+                                player2_score_14.getScore_number().setText(xx);
                                 break;
 
                             case 2:
-                                player2_score_14.setText(xxx);
+                                player2_score_14.getScore_number().setText(xxx);
+                                player2_score_15.setClosed(true);
                                 break;
 
                             case 3:
-                                if (!isClosed(player1_score_14)) updateScore(14, 2);
+                                if (!player1_score_14.isClosed()) updateScore(14, 2);
                                 break;
                         }
 
                     } else {
-                        String temp = player2_score_14.getText().toString();
+                        String temp = player2_score_14.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 3:
-                                player2_score_14.setText(xx);
+                                player2_score_14.getScore_number().setText(xx);
+                                player2_score_14.setClosed(false);
                                 break;
 
                             case 2:
-                                player2_score_14.setText(xx);
+                                player2_score_14.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player2_score_14.setText("");
+                                player2_score_14.getScore_number().setText("");
                                 break;
                         }
 
@@ -1343,38 +1462,40 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if (ADD) {
-                        String temp = player2_score_13.getText().toString();
+                        String temp = player2_score_13.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 0:
-                                player2_score_13.setText(x);
+                                player2_score_13.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player2_score_13.setText(xx);
+                                player2_score_13.getScore_number().setText(xx);
                                 break;
 
                             case 2:
-                                player2_score_13.setText(xxx);
+                                player2_score_13.getScore_number().setText(xxx);
+                                player2_score_13.setClosed(true);
                                 break;
 
                             case 3:
-                                if (!isClosed(player1_score_13)) updateScore(13, 2);
+                                if (!player1_score_13.isClosed()) updateScore(13, 2);
                                 break;
                         }
 
                     } else {
-                        String temp = player2_score_13.getText().toString();
+                        String temp = player2_score_13.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 3:
-                                player2_score_13.setText(xx);
+                                player2_score_13.getScore_number().setText(xx);
+                                player2_score_13.setClosed(false);
                                 break;
 
                             case 2:
-                                player2_score_13.setText(xx);
+                                player2_score_13.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player2_score_13.setText("");
+                                player2_score_13.getScore_number().setText("");
                                 break;
                         }
 
@@ -1386,38 +1507,40 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if (ADD) {
-                        String temp = player2_score_12.getText().toString();
+                        String temp = player2_score_12.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 0:
-                                player2_score_12.setText(x);
+                                player2_score_12.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player2_score_12.setText(xx);
+                                player2_score_12.getScore_number().setText(xx);
                                 break;
 
                             case 2:
-                                player2_score_12.setText(xxx);
+                                player2_score_12.getScore_number().setText(xxx);
+                                player2_score_12.setClosed(true);
                                 break;
 
                             case 3:
-                                if (!isClosed(player1_score_12)) updateScore(12, 2);
+                                if (!player1_score_12.isClosed()) updateScore(12, 2);
                                 break;
                         }
 
                     } else {
-                        String temp = player2_score_12.getText().toString();
+                        String temp = player2_score_12.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 3:
-                                player2_score_12.setText(xx);
+                                player2_score_12.getScore_number().setText(xx);
+                                player2_score_12.setClosed(false);
                                 break;
 
                             case 2:
-                                player2_score_12.setText(xx);
+                                player2_score_12.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player2_score_12.setText("");
+                                player2_score_12.getScore_number().setText("");
                                 break;
                         }
 
@@ -1429,38 +1552,40 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if (ADD) {
-                        String temp = player2_score_11.getText().toString();
+                        String temp = player2_score_11.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 0:
-                                player2_score_11.setText(x);
+                                player2_score_11.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player2_score_11.setText(xx);
+                                player2_score_11.getScore_number().setText(xx);
                                 break;
 
                             case 2:
-                                player2_score_11.setText(xxx);
+                                player2_score_11.getScore_number().setText(xxx);
+                                player2_score_11.setClosed(true);
                                 break;
 
                             case 3:
-                                if (!isClosed(player1_score_11)) updateScore(11, 2);
+                                if (!player1_score_11.isClosed()) updateScore(11, 2);
                                 break;
                         }
 
                     } else {
-                        String temp = player2_score_11.getText().toString();
+                        String temp = player2_score_11.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 3:
-                                player2_score_11.setText(xx);
+                                player2_score_11.getScore_number().setText(xx);
+                                player2_score_11.setClosed(false);
                                 break;
 
                             case 2:
-                                player2_score_11.setText(xx);
+                                player2_score_11.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player2_score_11.setText("");
+                                player2_score_11.getScore_number().setText("");
                                 break;
                         }
 
@@ -1472,38 +1597,40 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if (ADD) {
-                        String temp = player2_score_10.getText().toString();
+                        String temp = player2_score_10.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 0:
-                                player2_score_10.setText(x);
+                                player2_score_10.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player2_score_10.setText(xx);
+                                player2_score_10.getScore_number().setText(xx);
                                 break;
 
                             case 2:
-                                player2_score_10.setText(xxx);
+                                player2_score_10.getScore_number().setText(xxx);
+                                player2_score_10.setClosed(true);
                                 break;
 
                             case 3:
-                                if (!isClosed(player1_score_10)) updateScore(10, 2);
+                                if (!player1_score_10.isClosed()) updateScore(10, 2);
                                 break;
                         }
 
                     } else {
-                        String temp = player2_score_10.getText().toString();
+                        String temp = player2_score_10.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 3:
-                                player2_score_10.setText(xx);
+                                player2_score_10.getScore_number().setText(xx);
+                                player2_score_10.setClosed(false);
                                 break;
 
                             case 2:
-                                player2_score_10.setText(xx);
+                                player2_score_10.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player2_score_10.setText("");
+                                player2_score_10.getScore_number().setText("");
                                 break;
                         }
 
@@ -1515,38 +1642,40 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if (ADD) {
-                        String temp = player2_score_B.getText().toString();
+                        String temp = player2_score_B.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 0:
-                                player2_score_B.setText(x);
+                                player2_score_B.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player2_score_B.setText(xx);
+                                player2_score_B.getScore_number().setText(xx);
                                 break;
 
                             case 2:
-                                player2_score_B.setText(xxx);
+                                player2_score_B.getScore_number().setText(xxx);
+                                player2_score_B.setClosed(true);
                                 break;
 
                             case 3:
-                                if (!isClosed(player1_score_B)) updateScore(25, 2);
+                                if (!player1_score_B.isClosed()) updateScore(25, 2);
                                 break;
                         }
 
                     } else {
-                        String temp = player2_score_B.getText().toString();
+                        String temp = player2_score_B.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 3:
-                                player2_score_B.setText(xx);
+                                player2_score_B.getScore_number().setText(xx);
+                                player2_score_B.setClosed(false);
                                 break;
 
                             case 2:
-                                player2_score_B.setText(xx);
+                                player2_score_B.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player2_score_B.setText("");
+                                player2_score_B.getScore_number().setText("");
                                 break;
                         }
 
@@ -1558,39 +1687,41 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if (ADD) {
-                        String temp = player2_score_D.getText().toString();
+                        String temp = player2_score_D.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 0:
-                                player2_score_D.setText(x);
+                                player2_score_D.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player2_score_D.setText(xx);
+                                player2_score_D.getScore_number().setText(xx);
                                 break;
 
                             case 2:
-                                player2_score_D.setText(xxx);
+                                player2_score_D.getScore_number().setText(xxx);
+                                player2_score_D.setClosed(true);
                                 break;
 
                             case 3:
-                                if (!isClosed(player1_score_T))
+                                if (!player1_score_T.isClosed())
                                     player2_numeric_val += doubleScoreCalc(2);
                                 break;
                         }
 
                     } else {
-                        String temp = player2_score_D.getText().toString();
+                        String temp = player2_score_D.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 3:
-                                player2_score_D.setText(xx);
+                                player2_score_D.getScore_number().setText(xx);
+                                player2_score_D.setClosed(false);
                                 break;
 
                             case 2:
-                                player2_score_D.setText(xx);
+                                player2_score_D.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player2_score_D.setText("");
+                                player2_score_D.getScore_number().setText("");
                                 break;
                         }
 
@@ -1602,39 +1733,41 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if (ADD) {
-                        String temp = player2_score_T.getText().toString();
+                        String temp = player2_score_T.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 0:
-                                player2_score_T.setText(x);
+                                player2_score_T.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player2_score_T.setText(xx);
+                                player2_score_T.getScore_number().setText(xx);
                                 break;
 
                             case 2:
-                                player2_score_T.setText(xxx);
+                                player2_score_T.getScore_number().setText(xxx);
+                                player2_score_T.setClosed(true);
                                 break;
 
                             case 3:
-                                if (!isClosed(player1_score_T))
+                                if (!player2_score_T.isClosed())
                                     player2_numeric_val += tripleScoreCalc(2);
                                 break;
                         }
 
                     } else {
-                        String temp = player2_score_T.getText().toString();
+                        String temp = player2_score_T.getScore_number().getText().toString();
                         switch (temp.length()) {
                             case 3:
-                                player2_score_T.setText(xx);
+                                player2_score_T.getScore_number().setText(xx);
+                                player2_score_T.setClosed(false);
                                 break;
 
                             case 2:
-                                player2_score_T.setText(xx);
+                                player2_score_T.getScore_number().setText(x);
                                 break;
 
                             case 1:
-                                player2_score_T.setText("");
+                                player2_score_T.getScore_number().setText("");
                                 break;
                         }
 
@@ -1645,24 +1778,57 @@ public class MainActivity extends AppCompatActivity {
             done.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    score_dialog.dismiss();
+                    if(isGameWon() == 0){score_dialog.dismiss();}
+                    else if(isGameWon() == 1){
+                        new AlertDialog.Builder(MainActivity.this)
+                                .setTitle("Congratulations!!")
+                                .setMessage(player1.getText().toString() + " won!\nPlay again?")
+                                .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int whichButton) {
+                                        Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        startActivity(intent);
+                                    }})
+                                .setNegativeButton("No" ,new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int whichButton) {
+                                        MainActivity.this.finishAffinity();
+                                    }}).show();
+                    }
+
+                    else if(isGameWon() == 2){
+                        new AlertDialog.Builder(MainActivity.this)
+                                .setTitle("Congratulations!!")
+                                .setMessage(player2.getText().toString() + " won!\nPlay again?")
+                                .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int whichButton) {
+                                        Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        startActivity(intent);
+                                    }})
+                                .setNegativeButton("No" ,new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int whichButton) {
+                                        MainActivity.this.finishAffinity();
+                                    }}).show();
+                    }
                 }
 
             });
         }
 
         score_dialog.show();
+
+
     }
 
 
     public void onLongclickNewGame (View view){
         //doesn't quite work yet
-        final Button new_game = (Button) findViewById(R.id.new_game);
-        final Context context = getApplicationContext();
-        new_game.setOnLongClickListener(new View.OnLongClickListener() {
+
+    //    new_game.setVisibility(View.INVISIBLE);
+         new_game.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                new AlertDialog.Builder(context)
+                new AlertDialog.Builder(MainActivity.this)
                         .setTitle("Title")
                         .setMessage("Do you really want to start a new game?")
                         .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
@@ -1671,8 +1837,11 @@ public class MainActivity extends AppCompatActivity {
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(intent);
                             }})
-                        .setNegativeButton("No", null).show();
-                Toast.makeText(context, "l", Toast.LENGTH_SHORT).show();
+                        .setNegativeButton("No" ,new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+
+                            }}).show();
+                //Toast.makeText(MainActivity.this, "l", Toast.LENGTH_SHORT).show();
                 return true;
             }
         });
@@ -1690,7 +1859,16 @@ public class MainActivity extends AppCompatActivity {
             player1_numeric_val += score;
             String set_score = player1_numeric_val.toString();
             player1_score.setText(set_score);
-            Toast.makeText(context, num + confirm, Toast.LENGTH_SHORT).show();
+            final Toast toast = Toast.makeText(context, num + confirm, Toast.LENGTH_SHORT);
+            toast.show();
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    toast.cancel();
+                }
+            }, 444);
+
         }
 
         else{
@@ -1702,6 +1880,15 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public int isGameWon() {
+        int isWon = 0; //1 for p1, 2 for p2
+        if (player1_score_20.isClosed() && player1_score_19.isClosed() && player1_score_18.isClosed() && player1_score_17.isClosed() && player1_score_16.isClosed() && player1_score_15.isClosed() && player1_score_14.isClosed() && player1_score_13.isClosed() && player1_score_12.isClosed() && player1_score_11.isClosed() && player1_score_10.isClosed() && player1_score_B.isClosed() && player1_score_D.isClosed() && player1_score_T.isClosed()) {
+            if(player1_numeric_val > player2_numeric_val) isWon = 1;
+        } else if (player2_score_20.isClosed() && player2_score_19.isClosed() && player2_score_18.isClosed() && player2_score_17.isClosed() && player2_score_16.isClosed() && player2_score_15.isClosed() && player2_score_14.isClosed() && player2_score_13.isClosed() && player2_score_12.isClosed() && player2_score_11.isClosed() && player2_score_10.isClosed() && player2_score_B.isClosed() && player2_score_D.isClosed() && player2_score_T.isClosed()) {
+            if(player2_numeric_val > player1_numeric_val) isWon = 2;
+        }
+        return isWon;
+    }
 
     @Override
     protected void onStart() {
