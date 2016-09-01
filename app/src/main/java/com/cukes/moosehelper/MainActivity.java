@@ -463,14 +463,14 @@ public class MainActivity extends AppCompatActivity {
         done = (Button) findViewById(R.id.done);
         score_dialog.setContentView(R.layout.dialog_score_picker);
         score_dialog.getWindow().setLayout(ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
-        WindowManager.LayoutParams layoutparams = score_dialog.getWindow().getAttributes();
-        layoutparams.gravity = Gravity.CENTER | Gravity.START;
+
         String name = ((TextView) view).getText().toString();
         ADD = true;
 
 
         if(name.equals(player1.getText().toString())){
-
+            WindowManager.LayoutParams layoutparams = score_dialog.getWindow().getAttributes();
+            layoutparams.gravity = Gravity.CENTER | Gravity.START;
             score_dialog.setContentView(R.layout.dialog_score_picker);
             final Button _20 = (Button) score_dialog.findViewById(R.id.button_20);
             _20.setOnClickListener(new View.OnClickListener() {
@@ -1145,6 +1145,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         else if(name.equals(player2.getText().toString())) {
+            WindowManager.LayoutParams layoutparams = score_dialog.getWindow().getAttributes();
+            layoutparams.gravity = Gravity.CENTER | Gravity.END;
             score_dialog.setContentView(R.layout.dialog_score_picker);
             final Button _20 = (Button) score_dialog.findViewById(R.id.button_20);
             _20.setOnClickListener(new View.OnClickListener() {
