@@ -122,12 +122,6 @@ public class MainActivity extends AppCompatActivity {
          player2_score_D = new scoreBox();
          player2_score_T = new scoreBox();
 
-        //setTitle("");
-        //android.support.v7.app.ActionBar bar = getSupportActionBar();
-        //bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#37474F")));
-
-        //my_toolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        //setSupportActionBar(my_toolbar);
 
         Add_button = (RadioButton) findViewById(R.id.add_radio);
         d_t_score_picker = new Dialog(this);
@@ -298,7 +292,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        if(player == 1){
+            WindowManager.LayoutParams layoutparamsf = d_t_score_picker.getWindow().getAttributes();
+            layoutparamsf.gravity = Gravity.CENTER | Gravity.START;
+        }
+        else if (player ==2){
+            WindowManager.LayoutParams layoutparamsf = d_t_score_picker.getWindow().getAttributes();
+            layoutparamsf.gravity = Gravity.CENTER | Gravity.END;
+        }
         d_t_score_picker.show();
 
         return return_val;
@@ -396,7 +397,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        if(player == 1){
+            WindowManager.LayoutParams layoutparamsg = d_t_score_picker.getWindow().getAttributes();
+            layoutparamsg.gravity = Gravity.CENTER | Gravity.START;
+        }
+        else if (player ==2){
+            WindowManager.LayoutParams layoutparamsg = d_t_score_picker.getWindow().getAttributes();
+            layoutparamsg.gravity = Gravity.CENTER | Gravity.END;
+        }
         d_t_score_picker.show();
         return return_val;
     }
@@ -1431,7 +1439,7 @@ public class MainActivity extends AppCompatActivity {
 
                             case 2:
                                 player2_score_14.getScore_number().setText(xxx);
-                                player2_score_15.setClosed(true);
+                                player2_score_14.setClosed(true);
                                 break;
 
                             case 3:
@@ -1751,8 +1759,7 @@ public class MainActivity extends AppCompatActivity {
                                 break;
 
                             case 3:
-                                if (!player2_score_T.isClosed())
-                                    player2_numeric_val += tripleScoreCalc(2);
+                                if (!player1_score_T.isClosed()) player2_numeric_val += tripleScoreCalc(2);
                                 break;
                         }
 
@@ -1780,6 +1787,7 @@ public class MainActivity extends AppCompatActivity {
             done.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    System.out.println(isGameWon());
                     if(isGameWon() == 0){score_dialog.dismiss();}
                     else if(isGameWon() == 1){
                         new AlertDialog.Builder(MainActivity.this)
@@ -1886,7 +1894,8 @@ public class MainActivity extends AppCompatActivity {
         int isWon = 0; //1 for p1, 2 for p2
         if (player1_score_20.isClosed() && player1_score_19.isClosed() && player1_score_18.isClosed() && player1_score_17.isClosed() && player1_score_16.isClosed() && player1_score_15.isClosed() && player1_score_14.isClosed() && player1_score_13.isClosed() && player1_score_12.isClosed() && player1_score_11.isClosed() && player1_score_10.isClosed() && player1_score_B.isClosed() && player1_score_D.isClosed() && player1_score_T.isClosed()) {
             if(player1_numeric_val > player2_numeric_val) isWon = 1;
-        } else if (player2_score_20.isClosed() && player2_score_19.isClosed() && player2_score_18.isClosed() && player2_score_17.isClosed() && player2_score_16.isClosed() && player2_score_15.isClosed() && player2_score_14.isClosed() && player2_score_13.isClosed() && player2_score_12.isClosed() && player2_score_11.isClosed() && player2_score_10.isClosed() && player2_score_B.isClosed() && player2_score_D.isClosed() && player2_score_T.isClosed()) {
+        }
+        else if (player2_score_20.isClosed() && player2_score_19.isClosed() && player2_score_18.isClosed() && player2_score_17.isClosed() && player2_score_16.isClosed() && player2_score_15.isClosed() && player2_score_14.isClosed() && player2_score_13.isClosed() && player2_score_12.isClosed() && player2_score_11.isClosed() && player2_score_10.isClosed() && player2_score_B.isClosed() && player2_score_D.isClosed() && player2_score_T.isClosed()) {
             if(player2_numeric_val > player1_numeric_val) isWon = 2;
         }
         return isWon;

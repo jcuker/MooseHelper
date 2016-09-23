@@ -67,6 +67,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Score:  "
+        android:paddingRight="30dp"
         android:longClickable="true"
         android:clickable="true"
         android:onClick="onScoreClick"
@@ -82,6 +83,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Score:  "
+        android:paddingRight="30dp"
         android:clickable="true"
         android:longClickable="true"
         android:onClick="onScoreClick"
@@ -97,11 +99,12 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="0"
+        android:layout_marginLeft="5px"
         android:textColor="#00BCD4"
         android:textSize="25sp"
         android:id="@+id/player1_score"
-        android:layout_alignTop="@+id/player1_scorebox"
-        android:layout_toEndOf="@+id/player1_scorebox" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignEnd="@+id/player1_scorebox" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -111,8 +114,8 @@
         android:textColor="#00BCD4"
         android:textSize="25sp"
         android:id="@+id/player2_score"
-        android:layout_alignTop="@+id/player2_scorebox"
-        android:layout_toEndOf="@+id/player2_name" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignEnd="@+id/player2_scorebox" />
 
     <TextView
         android:layout_width="wrap_content"
